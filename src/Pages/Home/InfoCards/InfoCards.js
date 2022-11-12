@@ -11,7 +11,7 @@ const InfoCards = () => {
       name: "Opening Hours",
       Icon: clock,
       description: "Open 9.00AM to 5.00PM everyday",
-      bgClass : 'bg-primary'
+      bgClass : 'bg-gradient-to-r from-primary to-secondary'
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ const InfoCards = () => {
       name: "Contact Us",
       Icon: phone,
       description: "01751-311310",
-      bgClass : 'bg-primary'
+      bgClass : 'bg-gradient-to-r from-primary to-secondary'
     },
   ];
 

@@ -1,13 +1,14 @@
 import React from "react";
 import chair from '../../../assets/images/chair.png'
 import backgroundImg from '../../../assets/images/bg.png'
+import Button from "../../../components/Button/Button";
 
 const Banner = () => {
   return (
     <section className="mt-12"
-        style={{ backgroundImage: `url("../../../assets/images/bg.png")`}}
+        style={{ background: `url(${backgroundImg})`}}
     >
-      <div className="hero bg-base-200">
+      <div className="hero ">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
             src={chair}
@@ -21,7 +22,7 @@ const Banner = () => {
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
               et a id nisi.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+                    <Button>Get Started</Button>
           </div>
         </div>
       </div>
