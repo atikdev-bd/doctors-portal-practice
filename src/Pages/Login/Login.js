@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import GoogleIcon from "../../assets/Svg/icons8-google.svg";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Login = () => {
+    const {emailAndPasswordLogin,googleLogin}= useContext(AuthContext)
 
 const {register, handleSubmit} = useForm()
 
 const loginInfo = (data)=>{
+    const email = data.email
+    const password = data.password
+    emailAndPasswordLogin(email,password)
+    .then(result => {
+        console.log(result.user)
+    }).catch(error => console.log(error))
   console.log(data);
 }
 
@@ -61,7 +69,7 @@ const loginInfo = (data)=>{
             </div>
             <div className="divider text-slate-900">OR</div>
             <div
-            //   onClick={""}
+              onClick={googleLogin}
               id="login-id"
               className="flex mt-4 justify-center items-center border cursor-pointer bg-emerald-200 hover:bg-emerald-300  rounded-full"
             >

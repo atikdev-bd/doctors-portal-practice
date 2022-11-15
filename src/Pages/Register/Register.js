@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import GoogleIcon from "../../assets/Svg/icons8-google.svg";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Register = () => {
+    const {createUser,googleLogin} = useContext(AuthContext)
 
     const {register , handleSubmit} = useForm()
 
     const registerInfo = (data)=>{
-        console.log(data)
+        const email = data.email
+        const password = data.password
+        const name = data.name
+
+         createUser(email, password)
+         .then(result =>{
+            console.log(result.user);
+
+         }).catch(error => console.log(error))
+        console.log(email,password,name)
+
+
     }
   return (
     <div>
@@ -74,7 +87,7 @@ const Register = () => {
                 </button>
               </p>
               <div
-                // onClick={""}
+                 onClick={googleLogin}
                 className="flex justify-center items-center cursor-pointer border bg-emerald-200 hover:bg-emerald-300 rounded-full"
               >
                 <img className="w-12 " src={GoogleIcon} alt="" />
