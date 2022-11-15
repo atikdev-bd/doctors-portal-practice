@@ -5,7 +5,7 @@ import GoogleIcon from "../../assets/Svg/icons8-google.svg";
 import { AuthContext } from "../../context/AuthProvider";
 
 const Register = () => {
-    const {createUser,googleLogin} = useContext(AuthContext)
+    const {createUser,googleLogin,updateUser} = useContext(AuthContext)
 
     const {register , handleSubmit} = useForm()
 
@@ -13,13 +13,19 @@ const Register = () => {
         const email = data.email
         const password = data.password
         const name = data.name
+        const userInfo = {
+            displayName : name
+        }
 
          createUser(email, password)
          .then(result =>{
-            console.log(result.user);
+           updateUser(userInfo)
+           .then(result =>{
+                    console.log(result.user);
+           }).catch(error => console.log(error))
 
          }).catch(error => console.log(error))
-        console.log(email,password,name)
+    
 
 
     }
