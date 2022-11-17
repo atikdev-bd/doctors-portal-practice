@@ -1,9 +1,10 @@
 import React from 'react';
+import DashBoardDetails from './DashBoardDetails';
 
 const Dashboard = () => {
     return (
         <div>
-            <h1>dashboard in cooooming</h1>
+          <DashBoardDetails></DashBoardDetails>
         </div>
     );
 };

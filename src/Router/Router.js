@@ -1,3 +1,4 @@
+import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import Appointment from "../Pages/Appointment/Appointment/Appointment";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
@@ -38,7 +39,13 @@ export const router = createBrowserRouter([
 
     {
         path : '/dashboard',
-        element : <PrivetRoute><Dashboard></Dashboard></PrivetRoute>
+        element : <PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
+        children : [
+            {
+            path : '/dashboard',
+            element : <Dashboard></Dashboard>
+            }
+        ]
     }
 
 ])
