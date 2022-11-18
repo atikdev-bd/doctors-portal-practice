@@ -1,37 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleIcon from "../../assets/Svg/icons8-google.svg";
 import { AuthContext } from "../../context/AuthProvider";
+import useToken from "../../Hooks/UseToken";
 
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [loginUserEmail, setLoginUserEmail] = useState("");
   const from = location.state?.from?.pathname || "/";
   const { emailAndPasswordLogin, googleLogin } = useContext(AuthContext);
 
   const { register, handleSubmit } = useForm();
+
+  const [token] = useToken(loginUserEmail);
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const loginInfo = (data) => {
     const email = data.email;
     const password = data.password;
     emailAndPasswordLogin(email, password)
       .then((result) => {
-        console.log(result.user);
-        navigate(from, { replace: true });
+        setLoginUserEmail(email);
       })
       .catch((error) => console.log(error));
     console.log(data);
   };
 
-  const handleGoogle = ()=>{
+  const handleGoogle = () => {
     googleLogin()
-    .then(result =>{
+      .then((result) => {
         navigate(from, { replace: true });
-    }).catch(error=>{
-
-    })
-  }
+      })
+      .catch((error) => {});
+  };
 
   return (
     <div className="hero min-h-screen ">

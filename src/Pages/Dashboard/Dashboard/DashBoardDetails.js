@@ -9,18 +9,23 @@ const DashBoardDetails = () => {
   const {data : bookings = []} = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
-      const res = await fetch(url);
+      const res = await fetch(url,{
+        headers : {
+            authorization : `bearer ${localStorage.getItem("AccessToken")}`
+        }
+      });
       const data = await res.json();
       return data
     },
   });
+
+  console.log(bookings)
 
   return (
     <div>
       <h1 className="text-3xl">My Appointment</h1>
       <div className="overflow-x-auto mt-6">
         <table className="table w-full">
-          {/* <!-- head --> */}
           <thead>
             <tr>
               <th></th>

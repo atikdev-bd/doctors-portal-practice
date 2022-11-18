@@ -1,12 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import GoogleIcon from "../../assets/Svg/icons8-google.svg";
 import { AuthContext } from "../../context/AuthProvider";
+import useToken from "../../Hooks/UseToken";
 
 const Register = () => {
   const navigate = useNavigate()
-  const { createUser, googleLogin, updateUser } = useContext(AuthContext);
+  const { createUser, googleLogin, updateUser,} = useContext(AuthContext);
+  const [createUserEmail, setCreateUserEmail] = useState('')
+
+  const [token] = useToken(createUserEmail)
+
+  if(token){
+    navigate('/')
+  }
 
   const { register, handleSubmit } = useForm();
 
@@ -46,7 +54,8 @@ const Register = () => {
     .then(res => res.json())
     .then(data => {
       console.log(data)
-      navigate ("/")
+      setCreateUserEmail(email)
+      
     })
    
   };

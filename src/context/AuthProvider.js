@@ -62,9 +62,10 @@ const AuthProvider = ({ children }) => {
   const logOut = ()=>{
     signOut(auth)
     .then(result =>{
-        console.log(result.user)
 
-    }).catch(error => console.log(error))
+    }).catch(error => {
+      
+    })
   }
 
   const info = {
