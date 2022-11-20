@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../../context/AuthProvider";
+import Loader from "../../Shared/Loader/Loader";
 
 const DashBoardDetails = () => {
   const { user } = useContext(AuthContext);
 
   const url = `http://localhost:5000/bookings?email=${user?.email}`;
-  const {data : bookings = []} = useQuery({
+  const {data : bookings, isLoading} = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const res = await fetch(url,{
@@ -15,11 +16,14 @@ const DashBoardDetails = () => {
         }
       });
       const data = await res.json();
+      console.log(data);
       return data
     },
   });
 
-  console.log(bookings)
+if(isLoading){
+  return <Loader></Loader>
+}
 
   return (
     <div>
@@ -37,7 +41,7 @@ const DashBoardDetails = () => {
           </thead>
           <tbody>
            {
-            bookings.map((booking, index) => <tr
+            bookings?.map((booking, index) => <tr
             key={booking?._id} className="hover">
             <th>{index +1}</th>
             <td>{booking?.patient}</td>

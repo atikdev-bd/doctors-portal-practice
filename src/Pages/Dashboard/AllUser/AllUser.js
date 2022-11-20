@@ -1,14 +1,16 @@
 
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { AuthContext } from '../../../context/AuthProvider';
+import Loader from '../../Shared/Loader/Loader';
 
 const AllUser = () => {
-
+ 
 
     const url = 'http://localhost:5000/allUsers'
 
-    const {data : allUsers = [], refetch} = useQuery ({
+    const {data : allUsers = [], refetch , isLoading} = useQuery ({
         queryKey : ["allUsers"],
         queryFn : async ()=>{
             const res = await fetch(url)
@@ -40,6 +42,10 @@ const AllUser = () => {
     }).catch(error=> {
 
     })
+    }
+
+    if(isLoading){
+        return <Loader></Loader>
     }
 
     return (

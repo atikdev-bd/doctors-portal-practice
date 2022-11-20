@@ -26,6 +26,7 @@ const Login = () => {
     emailAndPasswordLogin(email, password)
       .then((result) => {
         setLoginUserEmail(email);
+        navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
     console.log(data);
