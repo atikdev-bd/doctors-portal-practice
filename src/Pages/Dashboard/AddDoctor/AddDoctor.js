@@ -61,7 +61,7 @@ const AddDoctor = () => {
   return (
     <div>
       <h1 className="text-5xl font-bold mb-4 ">Add a Doctor</h1>
-      <div className="">
+      <div className="ml-12">
         <div className="">
           <div className="card w-full max-w-sm shadow-2xl bg-base-300">
             <form onSubmit={handleSubmit(doctorInfo)} className="card-body">
@@ -97,9 +97,6 @@ const AddDoctor = () => {
                   {...register("specialty")}
                   className="select select-bordered w-full max-w-xs"
                 >
-                  <option disabled selected>
-                    Please pick a specialty
-                  </option>
 
                   {specialties.map((specialty) => (
                     <option key={specialty._id} value={specialty.name}>

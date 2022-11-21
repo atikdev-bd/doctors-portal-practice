@@ -28,8 +28,9 @@ const Login = () => {
         setLoginUserEmail(email);
         navigate(from, { replace: true });
       })
-      .catch((error) => console.log(error));
-    console.log(data);
+      .catch((error) =>{
+
+      });
   };
 
   const handleGoogle = () => {

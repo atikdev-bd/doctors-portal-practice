@@ -28,15 +28,19 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
+  
         updateUser(userInfo)
           .then((result) => {
             usersInfo(email, userInfo?.displayName)
             
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+
+          });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+
+      });
   };
 
   const usersInfo = (email, name) => {
@@ -53,7 +57,6 @@ const Register = () => {
     })
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       setCreateUserEmail(email)
       
     })

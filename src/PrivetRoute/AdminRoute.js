@@ -7,7 +7,6 @@ const AdminRoute = ({ children }) => {
   const location = useLocation();
   const { user,loading} = useContext(AuthContext);
   const [isAdmin,isLoading] = Admin(user?.email)
-  console.log(isAdmin);
   if(loading || isLoading){
     return <div className="flex justify-center mt-20">
         <progress className="progress w-56 text-center items-center mx-auto"></progress>

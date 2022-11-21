@@ -22,6 +22,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate,refetch }) => {
       phone: phone,
       appointmentDate: date,
       slot: slot,
+      Price : treatment?.price
     };
     fetch("http://localhost:5000/bookings", {
       method: "POST",
@@ -32,7 +33,6 @@ const BookingModal = ({ treatment, setTreatment, selectedDate,refetch }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data?.acknowledged) {
           setTreatment(null);
           toast.success("successfully");
